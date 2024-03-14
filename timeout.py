@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 def timeout_validate(browser, el_id=None, xpath=None):
     try:
         settings = {
@@ -22,3 +23,10 @@ def timeout_validate(browser, el_id=None, xpath=None):
     
     except:
         raise Exception('Произошла ошибка поиска элемента, попробуйте увеличить timeout')
+    
+
+def timeout_option(browser, value):
+    result = WebDriverWait(browser, timeout=10).until(
+                    EC.element_to_be_clickable((By.CSS_SELECTOR, f'option[value="{value}"]'))
+    )
+    return result
