@@ -14,7 +14,7 @@ def main(context=None):
         # print(browser.execute_script("return navigator.userAgent;"))
 
         market_data = timeout_validate(browser, el_id='link_2')
-
+        
         action_to_graph = ActionChains(browser).move_to_element(market_data).click()
         action_to_graph.perform()
 
@@ -25,6 +25,8 @@ def main(context=None):
 
         pre_open_page(browser, pre_open_market_href)
         
+        time.sleep(1)
+
         browser.back()
 
         time.sleep(1)

@@ -8,7 +8,7 @@ import time
 def pre_open_page(browser, href):
     browser.get(href)
 
-    timeout_validate(browser, el_id='livePreTable')
+    page = timeout_validate(browser, el_id='livePreTable')
 
     tbody = browser.find_element(By.TAG_NAME, 'tbody')
     
@@ -16,13 +16,18 @@ def pre_open_page(browser, href):
     
     data = []
     for tr in tr_table:
-        action_to_tr = ActionChains(browser).move_to_element(tr)
+        action_to_tr = ActionChains(browser).scroll_to_element(tr)
         action_to_tr.perform()
-        
+
         name = tr.find_element(By.CLASS_NAME, 'symbol-word-break')
         final_price = tr.find_element(By.CSS_SELECTOR, 'td[class="bold text-right"]')
 
         data.append([name.text, final_price.text])
+        time.sleep(0.2)
+
+    for _ in range(40):
+        action_to_tr = ActionChains(browser).scroll_by_amount(delta_x=0, delta_y=5)
+        action_to_tr.perform()
 
     writer_in_csv(data)
 
