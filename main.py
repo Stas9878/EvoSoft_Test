@@ -27,6 +27,23 @@ def timeout_validate(browser, el_id=None, xpath=None):
     except:
         raise Exception('Произошла ошибка поиска элемента, попробуйте увеличить timeout')
 
+def pre_open_page(browser, href):
+    browser.get(href)
+
+    timeout_validate(browser, el_id='livePreTable')
+
+    tbody = browser.find_element(By.TAG_NAME, 'tbody')
+    tr_table = tbody.find_elements(By.TAG_NAME, 'tr')[:-1]
+
+    for tr in tr_table:
+        action_to_tr = ActionChains(browser).move_to_element(tr)
+        action_to_tr.perform()
+        
+        name = tr.find_element(By.CLASS_NAME, 'symbol-word-break')
+        final_price = tr.find_element(By.CSS_SELECTOR, 'td[class="bold text-right"]')
+
+
+
 def main(context=None):
     with Chrome(options=set_options()) as browser:
         browser.get('https://www.nseindia.com')
@@ -43,7 +60,7 @@ def main(context=None):
         pre_open_market = timeout_validate(market_data, xpath='//a[text()="Pre-Open Market"]')
         pre_open_market_href = pre_open_market.get_attribute('href')
 
-        browser.get(pre_open_market_href)
+        pre_open_page(browser, pre_open_market_href)
         time.sleep(1111)
         
         
