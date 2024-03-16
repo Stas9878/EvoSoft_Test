@@ -6,8 +6,9 @@ from user_script import user_script, pre_open_page
 
 
 def set_options():
+    #Экземпляр опций для драйвера
     options = ChromeOptions()
-    
+    #Добавление опций
     options.add_argument("--disable-blink-features")
     options.add_argument("--disable-blink-features=AutomationControlled")
 
@@ -16,6 +17,7 @@ def set_options():
 
     options.add_argument("start-maximized")
 
+    #Используем рандомный User-Agent
     options.add_argument(f'user-agent={FakeUserAgent().random}')
-
+    #Возврат опций
     return options
