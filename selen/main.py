@@ -5,7 +5,7 @@ from timeout import timeout_validate
 from user_script import user_script, pre_open_page
 import time
 
-def main(context=None):
+def main() -> None:
     #Главная функция
     #Инициализация драйвера с опциями
     with Chrome(options=set_options()) as browser:

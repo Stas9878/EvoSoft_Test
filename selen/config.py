@@ -1,8 +1,9 @@
 from selenium.webdriver import ChromeOptions
+from selenium.webdriver.chrome.options import Options
 from fake_useragent import FakeUserAgent
 
 
-def set_options():
+def set_options() -> Options:
     #Экземпляр опций для драйвера
     options = ChromeOptions()
     #Добавление опций

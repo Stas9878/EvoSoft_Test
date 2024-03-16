@@ -1,10 +1,11 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.webdriver import WebDriver
 from timeout import timeout_validate, timeout_option
 from writer_csv import writer_in_csv
 import time
 
-def pre_open_page(browser, href):
+def pre_open_page(browser: WebDriver, href: str) -> None:
     #Функция для обработки страницы Pre-Open Market
     
     #GET-запрос к целевой странице
@@ -46,7 +47,7 @@ def pre_open_page(browser, href):
     writer_in_csv(data)
 
 
-def view_all_page(browser, href):
+def view_all_page(browser: WebDriver, href: str) -> None:
     #Функция для просмотра страницы с таблицей Nifty Bank
 
     time.sleep(2)
@@ -90,7 +91,7 @@ def view_all_page(browser, href):
     time.sleep(2)
 
 
-def user_script(browser):
+def user_script(browser: WebDriver) -> None:
     time.sleep(1)
 
     #Ожидаем появления кнопки Nifty Bank и кликаем по ней

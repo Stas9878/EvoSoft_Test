@@ -1,6 +1,6 @@
 import csv
 
-def writer_in_csv(data):
+def writer_in_csv(data: dict[str, str]) -> None:
     #Функция для записи данных в файл csv
     with open('Test_Work/EvoSoft/selen/data.csv', mode='w', encoding='utf-8') as file:
         writer = csv.writer(file, delimiter=';')

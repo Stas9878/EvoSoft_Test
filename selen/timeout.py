@@ -2,9 +2,12 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.webdriver import WebDriver
+from selenium.webdriver.remote.webelement import WebElement
 
-
-def timeout_validate(browser, el_id=None, xpath=None):
+def timeout_validate(browser: WebDriver, 
+                     el_id: str | None = None, 
+                     xpath: str | None = None) -> WebElement:
     #Функция для ожидания появления целевого элемента на странице
     try:
         settings = {
@@ -31,7 +34,7 @@ def timeout_validate(browser, el_id=None, xpath=None):
         raise TimeoutException('Произошла ошибка поиска элемента, попробуйте увеличить timeout')
     
 
-def timeout_option(browser, value):
+def timeout_option(browser: WebDriver, value: str) -> WebElement:
     #Функция для ожидания появления option в select
 
     #Ожидание появления элемента
