@@ -18,8 +18,9 @@ def timeout_validate(browser, el_id=None, xpath=None):
         elif xpath:
             #Если передали id, то класс селектора By.XPATH
             class_by, arg = settings['xpath'], xpath
+
         #Ожидаем появления целевого элемента на странице
-        result = WebDriverWait(browser, timeout=10).until(
+        result = WebDriverWait(browser, timeout=15).until(
                     EC.presence_of_element_located((class_by, arg))
             )
         #Возвращаем его
@@ -31,7 +32,12 @@ def timeout_validate(browser, el_id=None, xpath=None):
     
 
 def timeout_option(browser, value):
+    #Функция для ожидания появления option в select
+
+    #Ожидание появления элемента
     result = WebDriverWait(browser, timeout=10).until(
                     EC.element_to_be_clickable((By.CSS_SELECTOR, f'option[value="{value}"]'))
     )
+
+    #Возврат элемента
     return result

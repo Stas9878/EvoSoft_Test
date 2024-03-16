@@ -1,11 +1,9 @@
 from selenium.webdriver import Chrome
-from selenium.webdriver.common.by import By
 from selenium.webdriver.common.action_chains import ActionChains
+from config import set_options
+from timeout import timeout_validate
+from user_script import user_script, pre_open_page
 import time
-
-from config import (set_options, timeout_validate, 
-                    user_script, pre_open_page)
-
 
 def main(context=None):
     #Главная функция

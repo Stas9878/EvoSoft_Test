@@ -1,8 +1,5 @@
 from selenium.webdriver import ChromeOptions
 from fake_useragent import FakeUserAgent
-from writer_csv import writer_in_csv
-from timeout import timeout_validate
-from user_script import user_script, pre_open_page
 
 
 def set_options():

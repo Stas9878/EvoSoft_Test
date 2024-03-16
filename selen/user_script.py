@@ -1,5 +1,4 @@
 from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.common.action_chains import ActionChains
 from timeout import timeout_validate, timeout_option
 from writer_csv import writer_in_csv
@@ -10,13 +9,18 @@ def pre_open_page(browser, href):
     
     #GET-запрос к целевой странице
     browser.get(href)
+
     #Ожидаем появления таблицы
     page = timeout_validate(browser, el_id='livePreTable')
+
     #Находим тело таблицы
     tbody = browser.find_element(By.TAG_NAME, 'tbody')
+
+    time.sleep(2)
+
     #Находим строки таблицы
     tr_table = tbody.find_elements(By.TAG_NAME, 'tr')[:-1]
-    
+
     data = []
     #Обход строк таблицы
     for tr in tr_table:
@@ -55,7 +59,7 @@ def view_all_page(browser, href):
     
     time.sleep(1)
 
-    #Ожидаем появления пункта NIFTY ALPHA 50 в select
+    #Ожидаем появления option NIFTY ALPHA 50 в select
     option = timeout_option(browser, 'NIFTY ALPHA 50')
 
     #Перемещаемся к элементу select и кликаем по нему
