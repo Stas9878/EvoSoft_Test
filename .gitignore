@@ -1,5 +1,6 @@
 .DS_Store
 evosoft_venv
+config.py
 
 # Django #
 *.log
