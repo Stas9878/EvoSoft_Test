@@ -1,6 +1,7 @@
 import requests
 from config import params, cookies, headers
 # from youconfig import params, cookies, headers
+from utils import search_valid_tweet
 
 
 def main(): 
@@ -15,31 +16,8 @@ def main():
 
     target_data = dict(data)['data']['user']['result']['timeline_v2']['timeline']['instructions'][2]['entries']
 
-    count = 0
-    for tweet in target_data:
-        if count == 10:
-            break
-        
-        if 'itemContent' in tweet['content']:
-            tweet_item = tweet['content']['itemContent']['tweet_results']['result']['legacy']
-
-            if not 'retweeted_status_result' in tweet_item:
-                # created_at = tweet_item['created_at']
-                
-                text_post = tweet_item['full_text']
-
-                if 'http' in text_post[:5]:
-                    print('Текст в посте отсутствует. Ищем дальше..\n')
-                    continue
-                else:
-                    if 'http' in text_post:
-                        http_index = text_post.index('http')
-                        text =  text_post[:http_index].strip()
-                    else:
-                        text= text_post.strip()
-
-                count += 1
-                print(f'Пост {count} из 10\n{text}\n')
+    return search_valid_tweet(target_data)
+    
 
 if __name__ == '__main__':
     main()
